@@ -1,0 +1,79 @@
+{% extends "chatroom/base.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <h1>{{ user.get_username }}</h1>
+        
+        <h1>Chat Room: {{ context.name}}</h1>
+        <div id="chat-area"></div>
+        <div id="chat-messages"></div>
+        <form id="chat-form" method="post">
+            {% csrf_token %}
+            
+            <input type="text" id="message-input" name="message" placeholder="Type your message here">
+            <button type="submit">Send</button>
+        </form>
+        
+    </div>
+
+    <script>
+        const roomName = "{{ context.name }}";
+        const chatSocket = new WebSocket(
+            "ws://" + window.location.host + "/ws/chat/" + roomName + "/"
+        );
+        chatSocket.addEventListener("message", function (event) {
+            console.log("Received message:", event.data);
+            // Simplified code for updating the UI
+        });
+        const name="{{ user.get_username }}";
+        
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("recieve-message");
+            if (name != data.username) {
+            messageDiv.style.textAlign = "left"; // Align the entire div to the right
+
+            const strongElement = document.createElement("strong");
+            strongElement.innerHTML = ` ${data.username}`;
+
+            messageDiv.appendChild(strongElement);
+            messageDiv.appendChild(document.createTextNode(` ${data.message}`));
+
+            messageDiv.style.backgroundColor = "#4CAF50";
+            messageDiv.style.color = "#ffffff";
+           
+
+            document.getElementById("chat-messages").appendChild(messageDiv);
+        }
+            
+        };
+
+        document.querySelector("#chat-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const messageInput = document.querySelector("#message-input");
+            chatSocket.send(
+                JSON.stringify({ message: messageInput.value, username: name })
+
+            );
+
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("send-message");
+
+
+            messageDiv.style.textAlign = "right"; // Align to the right
+            messageDiv.innerHTML = `<strong>${"you"}:</strong> ${messageInput.value}`;
+            messageDiv.style.backgroundColor = "#4CAF50";
+            messageDiv.style.color = "#ffffff";
+           
+            document.getElementById("chat-messages").appendChild(messageDiv);
+
+
+
+
+            messageInput.value = "";
+        });
+    </script>
+</html>
+{% endblock %}

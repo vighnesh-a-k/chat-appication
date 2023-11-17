@@ -1,0 +1,17 @@
+{% extends "chatroom/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Chat Rooms</h1>
+        <ul class="room-list">
+            {% for room in object_list %}
+                <li>
+                    <a href="{% url 'create_message' room.id %}">{{ room.name }}</a>
+                </li>
+            {% empty %}
+                <li>No chat rooms available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

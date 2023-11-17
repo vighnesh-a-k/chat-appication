@@ -1,0 +1,33 @@
+/* retro.css */
+.container {
+    text-align: center;
+    padding: 50px;
+}
+
+.retro-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #333;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 18px;
+    border: 2px solid #f2f2f2;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.retro-button:hover {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+p {
+    font-size: 20px;
+    color: #666;
+}

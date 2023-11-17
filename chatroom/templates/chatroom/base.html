@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #111;
+        color: #fff;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    
+    .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    h1 {
+        color: #4CAF50;
+    }
+    #chat-area {
+    flex-grow: 1; /* Fill remaining vertical space */
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto; /* Use auto to enable scrollbar when content overflows */
+    display: flex;
+    flex-direction: column-reverse; /* Reverse the column direction for messages */
+}
+    #chat-messages {
+        margin-top: 10px;
+    }
+    
+    #message-input {
+        width: calc(100% - 18px);
+        padding: 8px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        margin-right: 8px;
+        box-sizing: border-box;
+        background-color: #444;
+        color: #fff;
+    }
+    
+    button {
+        width: calc(25% - 8px);
+        padding: 8px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    header {
+        background-color: #111;
+        padding: 15px 0;
+        text-align: center;
+    }
+    
+    header a {
+        text-decoration: none;
+        color: #fff;
+        padding: 10px;
+        margin: 0 10px;
+        font-family: 'Courier New', Courier, monospace;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    header a:hover {
+        background-color: #333;
+    }
+    
+    .send-message {
+        text-align: right;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+    
+    .receive-message {
+        text-align: left;
+        background-color: #333;
+        color: #fff;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+    
+
+
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your App{% endblock %}</title>
+    <!-- Include your CSS and JavaScript files here -->
+</head>
+<body>
+    
+
+    <main>
+        <header> <a href="{% url 'signup' %}">Signup</a>
+
+            <!-- Link to Login -->
+    
+    
+    
+    </header>
+       
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
+</body>
+</html>

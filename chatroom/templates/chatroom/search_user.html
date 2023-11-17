@@ -1,0 +1,107 @@
+<!-- templates/user_search.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Search</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #f1ebeb;
+        }
+
+        header {
+            background-color: #554747;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f8f0df;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #554747;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #554747;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #554747;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #6d5e5e;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #a68f8f;
+            font-size: 14px;
+            color: #554747;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        User Search
+    </header>
+
+    <main>
+        <form method="GET" action="{% url 'user_search' %}">
+            <label for="search">Search for a user:</label>
+            <input type="text" name="username" id="search" placeholder="Enter username..." >
+            <button type="submit">Search</button>
+        </form>
+
+        <ul>
+            {% for user in users %}
+                <li>User ID: {{ user.id }}, Username: {{ user.username }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+</body>
+</html>
